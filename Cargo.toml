@@ -1,0 +1,17 @@
+[package]
+name = "zcash-sprout-verifier"
+version = "0.1.0"
+authors = ["Jason Davies <jason@jasondavies.com>"]
+description = "Zcash Sprout zero-knowledge proof verifier."
+repository = "https://github.com/plutomonkey/zcash-sprout-verifier"
+readme = "README.md"
+license = "MIT"
+keywords = ["zcash", "zkp"]
+categories = ["cryptography"]
+
+[lib]
+crate-type = ["staticlib"]
+
+[dependencies]
+bn = "0.4"
+libc = "0.2"
