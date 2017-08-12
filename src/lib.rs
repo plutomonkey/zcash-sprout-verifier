@@ -2,6 +2,7 @@ extern crate bn;
 extern crate libc;
 
 use bn::{pairing, Fr, G1, G2, Group};
+use std::panic::catch_unwind;
 use std::slice;
 
 struct VerifyingKey {
@@ -105,9 +106,8 @@ pub extern "system" fn rust_sprout_verifier(
         }
     };
 
-    if verify(&vk, primary_input, &proof) {
-        1
-    } else {
-        0
+    match catch_unwind(|| { verify(&vk, primary_input, &proof) }) {
+        Ok(result) => result as libc::uint8_t,
+        Err(_) => 0,
     }
 }
